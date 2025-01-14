@@ -1,0 +1,19 @@
+{
+  "name": "simple-node-data-storage",
+  "version": "1.0.0",
+  "description": "A simple Node.js application to store data without a database.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "nodejs",
+    "data-storage",
+    "no-database"
+  ],
+  "author": "Aniket Modkar",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
