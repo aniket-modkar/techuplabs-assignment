@@ -3,15 +3,21 @@ import { CommonModule } from '@angular/common';
 
 import { CustomerAddRoutingModule } from './customer-add-routing.module';
 import { CustomerAddComponent } from './customer-add.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgxSelectModule } from 'ngx-select-ex';
+import { CustomerService } from '../../data-access/customers.service';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-  declarations: [
-    CustomerAddComponent
-  ],
+  declarations: [CustomerAddComponent],
   imports: [
     CommonModule,
-    CustomerAddRoutingModule
-  ]
+    CustomerAddRoutingModule,
+    ReactiveFormsModule,
+    NgxSelectModule,
+    NgbModalModule,
+  ],
+  exports: [CustomerAddComponent],
+  providers: [CustomerService],
 })
-export class CustomerAddModule { }
+export class CustomerAddModule {}

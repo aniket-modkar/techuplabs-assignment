@@ -1,1 +1,67 @@
-<p>customer-add works!</p>
+<div class="container mt-4 p-4">
+  <h2>Add Customer</h2>
+
+  <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+    <!-- Title -->
+    <div class="form-group mb-3">
+      <label for="title">Title</label>
+      <input
+        type="text"
+        id="title"
+        formControlName="title"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['title'].errors }"
+      />
+      <div *ngIf="submitted && f['title'].errors" class="invalid-feedback">
+        <div *ngIf="f['title'].errors['required']">Title is required</div>
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div class="form-group mb-3">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        id="email"
+        formControlName="email"
+        class="form-control"
+        [ngClass]="{ 'is-invalid': submitted && f['email'].errors }"
+      />
+      <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+        <div *ngIf="f['email'].errors['required']">Email is required</div>
+        <div *ngIf="f['email'].errors['email']">Please enter a valid email</div>
+      </div>
+    </div>
+
+    <!-- Region -->
+    <div class="form-group mb-3">
+      <label for="region">Region</label>
+      <ngx-select
+        [items]="regions"
+        formControlName="region"
+        [ngClass]="{ 'is-invalid': submitted && f['region'].errors }"
+        (select)="onRegionChange($event)"
+      >
+      </ngx-select>
+      <div *ngIf="submitted && f['region'].errors" class="invalid-feedback">
+        <div *ngIf="f['region'].errors['required']">Region is required</div>
+      </div>
+    </div>
+
+    <!-- Country -->
+    <div class="form-group mb-3">
+      <label for="country">Country</label>
+      <ngx-select
+        [items]="countries"
+        formControlName="country"
+        [ngClass]="{ 'is-invalid': submitted && f['country'].errors }"
+      >
+      </ngx-select>
+      <div *ngIf="submitted && f['country'].errors" class="invalid-feedback">
+        <div *ngIf="f['country'].errors['required']">Country is required</div>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
