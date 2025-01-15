@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 export class HttpHelperService {
   _httpClient = inject(HttpClient);
 
-  post<T extends object>(
+  public post<T extends object>(
     path: string,
     body: Object = {},
     options: Object = {}
@@ -14,7 +14,7 @@ export class HttpHelperService {
     return this._httpClient.post<T>(`${path}`, body, options);
   }
 
-  get<T extends object>(
+  public get<T extends object>(
     path: string,
     params: HttpParams = new HttpParams()
   ): Observable<T> {

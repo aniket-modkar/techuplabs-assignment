@@ -2,13 +2,14 @@ const fs = require("fs");
 const path = require("path");
 const express = require("express");
 const multer = require("multer");
+const cors = require("cors");
 
 const app = express();
 const PORT = 3000;
 
 // Middleware to parse JSON
 app.use(express.json());
-
+app.use(cors("*"));
 app.use("/public", express.static("public"));
 
 // Path to customers file

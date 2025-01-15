@@ -1,1 +1,62 @@
-<p>pin-list works!</p>
+<div class="container mt-4">
+  <app-pin-header></app-pin-header>
+
+  <!-- Loading State -->
+  <div *ngIf="loading$ | async" class="text-center">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="error$ | async as error" class="alert alert-danger" role="alert">
+    {{ error }}
+    <button class="btn btn-link" (click)="fetchAllPins()">Try again</button>
+  </div>
+
+  <!-- Success State -->
+  <ng-container *ngIf="pins$ | async as pins">
+    <table class="table" *ngIf="pins.length > 0">
+      <thead>
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Image</th>
+          <th scope="col">Collaboratory</th>
+          <th scope="col">Privacy</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pin of pins; trackBy: trackByPinId">
+          <td>{{ pin.title }}</td>
+          <td>
+            <img
+              [src]="pin.image"
+              [alt]="pin.title"
+              class="img-thumbnail"
+              loading="lazy"
+              width="100"
+              height="100"
+            />
+          </td>
+          <td>
+            <div class="d-flex flex-wrap gap-2">
+              <span
+                *ngFor="
+                  let collaborator of pin.collaborators;
+                  trackBy: trackByCollaboratorId
+                "
+                class="badge bg-primary"
+              >
+                {{ collaborator.title }}
+              </span>
+            </div>
+          </td>
+          <td>{{ pin.privacy }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- No Data State -->
+    <div *ngIf="!pins.length" class="alert alert-info">No pins found.</div>
+  </ng-container>
+</div>

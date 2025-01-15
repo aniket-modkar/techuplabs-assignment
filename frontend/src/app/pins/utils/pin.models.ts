@@ -1,8 +1,16 @@
-export interface Pin {
-  id: number;
+export interface Pins {
   title: string;
-  description: string;
-  image: string;
   collaboratory: string[];
-  privacy: 'public' | 'private';
+  privacy: string;
+  image: string;
+  id: number;
+  collaborators: Collaborator[];
+}
+
+interface Collaborator {
+  title: string;
+  email: string;
+  region: string;
+  country: string;
+  id: number;
 }
