@@ -2,11 +2,47 @@
   {
     "title": "My New Pin",
     "collaboratory": [
-      "1",
-      "2"
+      "Aniket Modkar"
     ],
     "privacy": "Public",
     "image": "/public/1736872455403.png",
     "id": 1
+  },
+  {
+    "title": "My Second Pin",
+    "collaboratory": [
+      "Jhon doe"
+    ],
+    "privacy": "public",
+    "image": "/public/1736939989736.jpg",
+    "id": 2
+  },
+  {
+    "title": "My Third Pin",
+    "collaboratory": [
+      "Peter Parker",
+      "Aniket Second"
+    ],
+    "privacy": "private",
+    "image": "/public/1736940340767.png",
+    "id": 3
+  },
+  {
+    "title": "My Fourth pin",
+    "collaboratory": [
+      "Aniket"
+    ],
+    "privacy": "private",
+    "image": "/public/1736940378104.png",
+    "id": 4
+  },
+  {
+    "title": "My Pin Fifth",
+    "collaboratory": [
+      "Aniket Second"
+    ],
+    "privacy": "private",
+    "image": "/public/1736940429397.ico",
+    "id": 5
   }
 ]

@@ -1,5 +1,5 @@
 <div class="container mt-4">
-  <app-pin-header></app-pin-header>
+  <app-pin-header (pinChanges$)="reload($event)"></app-pin-header>
 
   <!-- Loading State -->
   <div *ngIf="loading$ | async" class="text-center">
@@ -41,13 +41,10 @@
           <td>
             <div class="d-flex flex-wrap gap-2">
               <span
-                *ngFor="
-                  let collaborator of pin.collaborators;
-                  trackBy: trackByCollaboratorId
-                "
+                *ngFor="let collaborator of pin.collaboratory"
                 class="badge bg-primary"
               >
-                {{ collaborator.title }}
+                {{ collaborator }}
               </span>
             </div>
           </td>

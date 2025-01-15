@@ -1,1 +1,118 @@
-<p>pin-add works!</p>
+<div class="modal-header">
+  <h4 class="modal-title">Create Pin</h4>
+  <button
+    type="button"
+    class="btn-close"
+    aria-label="Close"
+    (click)="activeModal.dismiss()"
+  ></button>
+</div>
+
+<div class="modal-body">
+  <form [formGroup]="pinForm" (ngSubmit)="onSubmit()">
+    <!-- Title Field -->
+    <div class="mb-3">
+      <label for="title" class="form-label">Title *</label>
+      <input
+        type="text"
+        class="form-control"
+        [class.is-invalid]="submitted && f['title'].errors"
+        id="title"
+        formControlName="title"
+        placeholder="Enter pin title"
+      />
+      <div class="invalid-feedback" *ngIf="submitted && f['title'].errors">
+        <div *ngIf="f['title'].errors['required']">Title is required</div>
+        <div *ngIf="f['title'].errors['minlength']">
+          Title must be at least 3 characters
+        </div>
+      </div>
+    </div>
+
+    <!-- Image Field -->
+    <div class="mb-3">
+      <label for="image" class="form-label">Image *</label>
+      <input
+        type="file"
+        class="form-control"
+        [class.is-invalid]="submitted && f['image'].errors"
+        id="image"
+        (change)="onFileChange($event)"
+        accept="image/*"
+      />
+      <div class="invalid-feedback" *ngIf="submitted && f['image'].errors">
+        <div *ngIf="f['image'].errors['required']">Please select an image</div>
+        <div *ngIf="f['image'].errors['invalidType']">
+          Please select a valid image file
+        </div>
+        <div *ngIf="f['image'].errors['invalidSize']">
+          Image size should not exceed 5MB
+        </div>
+      </div>
+      <small class="form-text text-muted">
+        Supported formats: JPG, PNG, GIF. Max size: 5MB
+      </small>
+    </div>
+
+    <!-- Collaborators Field -->
+    <div class="mb-3">
+      <label for="collaboratory" class="form-label">Collaborators</label>
+      <ngx-select
+        [items]="collaborators"
+        [multiple]="true"
+        placeholder="Select collaborators"
+        formControlName="collaboratory"
+      >
+      </ngx-select>
+    </div>
+
+    <!-- Privacy Field -->
+    <div class="mb-3">
+      <label class="form-label d-block">Privacy *</label>
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          id="private"
+          value="private"
+          formControlName="privacy"
+        />
+        <label class="form-check-label" for="private">Private</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input
+          class="form-check-input"
+          type="radio"
+          id="public"
+          value="public"
+          formControlName="privacy"
+        />
+        <label class="form-check-label" for="public">Public</label>
+      </div>
+      <div
+        class="invalid-feedback d-block"
+        *ngIf="submitted && f['privacy'].errors?.['required']"
+      >
+        Please select privacy setting
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="modal-footer justify-content-center">
+  <button
+    type="button"
+    class="btn btn-secondary me-2"
+    (click)="activeModal.close()"
+  >
+    Close
+  </button>
+  <button
+    type="submit"
+    class="btn btn-primary"
+    (click)="onSubmit()"
+    [disabled]="submitted && pinForm.invalid"
+  >
+    Create Pin
+  </button>
+</div>

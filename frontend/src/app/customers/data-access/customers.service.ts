@@ -1,11 +1,12 @@
 import { inject, Injectable } from '@angular/core';
 import {
-  ADD_CUSTOMER_API,
+  CUSTOMER_API,
   FETCH_REGIONS_API,
 } from 'src/app/share/utils/apis.constant';
 import { HttpHelperService } from 'src/app/share/utils/http-helper.service';
 import { RegionFetch } from '../utils/region.model';
 import { map, Observable } from 'rxjs';
+import { Customer } from '../utils/customer.model';
 
 @Injectable()
 export class CustomerService {
@@ -43,6 +44,12 @@ export class CustomerService {
   }
 
   addCustomer(body: any): Observable<any> {
-    return this._httpHelper.post(ADD_CUSTOMER_API, body);
+    return this._httpHelper.post(CUSTOMER_API, body);
+  }
+
+  fetchCustomers(): Observable<string[]> {
+    return this._httpHelper
+      .get<Customer[]>(CUSTOMER_API)
+      .pipe(map((_: Customer[]) => _.map((c) => c.title)));
   }
 }

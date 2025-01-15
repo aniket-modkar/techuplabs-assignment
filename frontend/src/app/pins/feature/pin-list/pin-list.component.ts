@@ -67,6 +67,15 @@ export class PinListComponent {
       });
   }
 
+  reload(isChangesDone: boolean) {
+    if (isChangesDone) {
+      // timeout because we are writing data in files it is async process
+      setTimeout(() => {
+        this.fetchAllPins();
+      }, 1000);
+    }
+  }
+
   private handleError(message: string): void {
     this.stateSubject.next({
       loading: false,
@@ -82,9 +91,5 @@ export class PinListComponent {
 
   trackByPinId(index: number, pin: Pins): number {
     return pin.id;
-  }
-
-  trackByCollaboratorId(index: number, collaborator: any): number {
-    return collaborator.id;
   }
 }

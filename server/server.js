@@ -90,16 +90,7 @@ app.post("/pins", upload.single("image"), (req, res) => {
 // Get all pins with collaborator details
 app.get("/pins", (req, res) => {
   const pins = readPins();
-  const customers = readCustomers();
-
-  const pinsWithCollaborators = pins.map((pin) => {
-    const collaborators = customers.filter((customer) =>
-      pin.collaboratory.includes(String(customer.id))
-    );
-    return { ...pin, collaborators }; // Include collaborators in the pin object
-  });
-
-  res.json(pinsWithCollaborators);
+  res.json(pins);
 });
 
 // Start the server
