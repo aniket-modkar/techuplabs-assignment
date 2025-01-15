@@ -44,5 +44,15 @@
     "privacy": "private",
     "image": "/public/1736940429397.ico",
     "id": 5
+  },
+  {
+    "title": "My Sixth Pin",
+    "collaboratory": [
+      "Jon Snow",
+      "Peter Parker"
+    ],
+    "privacy": "public",
+    "image": "/public/1736940827301.svg",
+    "id": 6
   }
 ]
